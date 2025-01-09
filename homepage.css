@@ -6,7 +6,6 @@ body {
     background-color: #f4f4f4;
 }
 
-/* Top Header Styling */
 .header {
     display: flex;
     justify-content: space-between;
@@ -44,7 +43,7 @@ body {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 15px;
-    padding: 100px 20px 20px; /* Added padding to make space for fixed header */
+    padding: 100px 20px 20px;
     justify-items: center;
 }
 
@@ -113,7 +112,6 @@ body {
     border-radius: 5px;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
     .container {
         grid-template-columns: repeat(3, 1fr);

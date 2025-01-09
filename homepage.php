@@ -31,18 +31,25 @@ include("connect.php");
 
     <!-- Product Grid Section -->
     <div class="container">
-        <!-- Loop for 10 Products -->
         <?php
-        for ($i = 1; $i <= 10; $i++) {
-            echo '
-            <div class="product-card">
-                <img src="https://via.placeholder.com/200" alt="Product Image" class="product-image">
-                <div class="product-info">
-                    <p>Product ' . $i . '</p>
-                    <p>KSh ' . number_format(rand(1000, 10000), 0) . '</p> <!-- Price in KSH -->
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-            </div>';
+        // Fetch product data from the database
+        $productQuery = "SELECT * FROM products";
+        $productResult = mysqli_query($conn, $productQuery);
+
+        if ($productResult) {
+            while ($product = mysqli_fetch_assoc($productResult)) {
+                echo '
+                <div class="product-card">
+                    <img src="' . htmlspecialchars($product['image_path']) . '" alt="Product Image" class="product-image">
+                    <div class="product-info">
+                        <p>' . htmlspecialchars($product['name']) . '</p>
+                        <p>KSh ' . number_format($product['price'], 2) . '</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>';
+            }
+        } else {
+            echo '<p>No products available.</p>';
         }
         ?>
     </div>
